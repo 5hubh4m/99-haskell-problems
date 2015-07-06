@@ -1,4 +1,4 @@
-module ListContinued
+module ListsContinued
 ( ListElement,
   encodeLstProper,
   decodeLst,
