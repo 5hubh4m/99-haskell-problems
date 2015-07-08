@@ -7,7 +7,8 @@ module ListsAgain
   combination,
   genPowerSet,
 --  genGroup,
-
+  sortLstLen,
+  sortLstLenFreq
 ) where
 
 import ListsContinued
@@ -61,3 +62,22 @@ genPowerSet xs = genSet (length xs) xs where
 
 --Part B: Specify a list of group sizes to produce a list of groups.
 --Can't wrap my head around this problem just yet
+
+--Problem 28: Sorting a list of lists according to length of sublists
+--Part A: We suppose that a list contains elements that are lists themselves.
+--The objective is to sort the elements of this list according to their length.
+sortLstLen :: [[a]] -> [[a]]
+sortLstLen [] = []
+sortLstLen (x : xs) = let smallerSorted = sortLstLen [a | a <- xs, length a <= length x]
+                          biggerSorted = sortLstLen [a | a <- xs, length a > length x]
+                      in  smallerSorted ++ [x] ++ biggerSorted
+
+--Part B: This time the objective is to sort the elements of this list according to their length frequency.
+--Lists with rare lengths are placed first, others with a more frequent length come later.
+sortLstLenFreq :: [[a]] -> [[a]]
+sortLstLenFreq [] = []
+sortLstLenFreq (x : xs) = let smallerSorted = sortLstLenFreq [a | a <- xs, numElem (length a) <= numElem (length x)]
+                              biggerSorted = sortLstLenFreq [a | a <- xs, numElem (length a) > numElem (length x)]
+                          in  smallerSorted ++ [x] ++ biggerSorted where
+                            numElem :: Int -> Int
+                            numElem n = foldl (\acc e -> if n == length e then acc + 1 else acc) 0 (x: xs)
