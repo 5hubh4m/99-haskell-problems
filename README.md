@@ -9,4 +9,8 @@ https://wiki.haskell.org/99_questions.
 
 Shubham Chaudhary
 
-Cheers!
+**Disclaimer**
+
+I am by no means a Haskell expert, in fact, I'm just a beginner. Better/more efficient solutions to the problems exist out there, so if you find any of my solutions bad/inefficient, tell me, but don't give me fire!
+
+**Cheers!**
